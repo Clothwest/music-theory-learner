@@ -1,35 +1,28 @@
 class_name Solfege extends Control
 
 @onready var timer_label: TimerLabel = %Timer
-@onready var number_label: Label = %Number
+@onready var number_label: NumberLabel = %Number
 @onready var solfege_line_edit: SolfegeLineEdit = %Solfege
-
-# numbers and solfeges
-var numbers: Array = [1, 2, 3, 4, 5, 6, 7]
-var solfeges: Dictionary[int, String] = {1: "do", 2: "re", 3: "mi", 4: "fa", 5: "sol", 6: "la", 7: "si"}
-
-#
-#var finished: bool = false
 
 func _ready() -> void:
 	# signal
-	solfege_line_edit.finished.connect(_on_solfege_line_edit_finished)
+	solfege_line_edit.number_found.connect(_on_solfege_line_edit_number_found)
 	#
+	number_label.init()
 	timer_label.init()
-	number_label.text = str(numbers.pick_random())
-	solfege_line_edit.init(solfeges)
+	solfege_line_edit.init()
 	call_deferred("on_ready")
-	
 
 func on_ready() -> void:
 	solfege_line_edit.grab_focus()
 
-func _process(delta: float) -> void:
-	pass
-
-func _physics_process(delta: float) -> void:
-	pass
-
-func _on_solfege_line_edit_finished(number: int) -> void:
+func reset() -> void:
+	number_label.reset()
 	timer_label.reset()
-	number_label.text = str(numbers.pick_random())
+	solfege_line_edit.reset()
+
+func _on_solfege_line_edit_number_found(number: int) -> void:
+	if number == number_label.number:
+		timer_label.timer_ticked = false
+		await get_tree().create_timer(0.5).timeout
+		reset()

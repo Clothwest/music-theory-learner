@@ -1,19 +1,23 @@
 class_name SolfegeLineEdit extends LineEdit
 
-signal finished(number: int)
+signal number_found(number: int)
 
-var solfeges: Dictionary[int, String] = {}
+var solfeges: Dictionary[int, String] = {1: "do", 2: "re", 3: "mi", 4: "fa", 5: "sol", 6: "la", 7: "si"}
 
 func _ready() -> void:
+	# signal
 	text_changed.connect(_on_text_changed)
+	#
+	mouse_default_cursor_shape = Control.CURSOR_ARROW
 
-func init(solfeges: Dictionary[int, String]) -> void:
-	self.solfeges = solfeges
+func init() -> void:
+	reset()
+
+func reset() -> void:
 	text = ""
 
 func _on_text_changed(new_text: String) -> void:
 	var number = solfeges.find_key(new_text)
 	if number != null:
 		number = int(number)
-		finished.emit(number)
-		text = ""
+		number_found.emit(number)

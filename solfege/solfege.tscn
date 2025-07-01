@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c36la3itmohj6"]
+[gd_scene load_steps=7 format=3 uid="uid://c36la3itmohj6"]
 
 [ext_resource type="Script" uid="uid://bjxskskeanx57" path="res://solfege/solfege.gd" id="1_1vtob"]
 [ext_resource type="Script" uid="uid://6iikrjlf4rj0" path="res://solfege/solfege_line_edit.gd" id="2_monw2"]
 [ext_resource type="Script" uid="uid://7rd6m2m86no" path="res://solfege/timer_label.gd" id="2_nkerw"]
+[ext_resource type="Script" uid="uid://btrbo3ilyqmeu" path="res://solfege/number_label.gd" id="3_ix60j"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1vtob"]
+outline_color = Color(0.5, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6u0k7"]
 font_size = 64
@@ -46,7 +48,7 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 32)
 layout_mode = 2
-text = "1:32"
+text = "00:000"
 label_settings = SubResource("LabelSettings_1vtob")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -60,10 +62,11 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-text = "1"
+text = "4"
 label_settings = SubResource("LabelSettings_6u0k7")
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("3_ix60j")
 
 [node name="Solfege" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -72,5 +75,8 @@ size_flags_vertical = 3
 [node name="Solfege" type="LineEdit" parent="MarginContainer/VBoxContainer/Solfege"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/selection_color = Color(0, 0, 0, 0)
+theme_override_colors/caret_color = Color(0, 0, 0, 0)
+alignment = 1
 max_length = 4
 script = ExtResource("2_monw2")

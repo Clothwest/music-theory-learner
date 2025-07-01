@@ -12,20 +12,35 @@ func _ready() -> void:
 	pass
 
 func init() -> void:
-	timer = 0.0
-	timer_ticked = true
+	reset()
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
+	if timer > 3.0:
+		label_settings.font_color = Color.from_hsv(0.0, 0.5, 1.0, 1.0)
+		label_settings.outline_size = 5
+	else:
+		reset_decoration()
 	if timer_ticked:
 		timer += delta
 	millisecond = int(timer * 1000) % 1000
 	second = int(timer) % 60
 	minute = int(timer) / 60 % 60
 	hour = int(timer) / 3600 % 100
-	show_s_ms()
+	if minute > 0:
+		show_m_s()
+		if hour > 0:
+			show_h_m_s()
+	else:
+		show_s_ms()
 
 func reset() -> void:
 	timer = 0.0
+	timer_ticked = true
+	reset_decoration()
+
+func reset_decoration() -> void:
+	label_settings.font_color = Color.from_hsv(0.0, 0.0, 1.0, 1.0)
+	label_settings.outline_size = 0
 
 func show_s_ms() -> void:
 	text = "{0}{1}:{2}{3}{4}".format([second / 10, second % 10, millisecond / 100, millisecond / 10 % 10, millisecond % 10])
