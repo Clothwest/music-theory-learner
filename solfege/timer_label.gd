@@ -9,7 +9,7 @@ var minute: int = 0
 var hour: int = 0
 
 func _ready() -> void:
-	pass
+	pivot_offset = size / 2
 
 func init() -> void:
 	reset()

@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://cq8yhkho4j6mf"]
+
+[ext_resource type="Script" uid="uid://dce65fku5ns7y" path="res://solfege/number_body/number_body.gd" id="1_o25ba"]
+[ext_resource type="Texture2D" uid="uid://btjpn7dvw7twg" path="res://assets/music_theory_learner.png" id="2_lw43k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iibnv"]
+size = Vector2(10, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alwo4"]
+atlas = ExtResource("2_lw43k")
+region = Rect2(4, 4, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b3cc"]
+atlas = ExtResource("2_lw43k")
+region = Rect2(4, 24, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40svf"]
+atlas = ExtResource("2_lw43k")
+region = Rect2(4, 44, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jojie"]
+atlas = ExtResource("2_lw43k")
+region = Rect2(4, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6da8m"]
+atlas = ExtResource("2_lw43k")
+region = Rect2(4, 84, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj61n"]
+atlas = ExtResource("2_lw43k")
+region = Rect2(4, 104, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g41vv"]
+atlas = ExtResource("2_lw43k")
+region = Rect2(4, 124, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iibnv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alwo4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b3cc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40svf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jojie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6da8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj61n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g41vv")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="NumberBody" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite")]
+scale = Vector2(3, 3)
+script = ExtResource("1_o25ba")
+animated_sprite = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_iibnv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_iibnv")

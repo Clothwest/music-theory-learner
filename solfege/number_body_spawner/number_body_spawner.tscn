@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcndpbhou0qn"]
+
+[ext_resource type="Script" uid="uid://ce4s1o6xbr8ql" path="res://solfege/number_body_spawner/number_body_spawner.gd" id="1_yw1cg"]
+
+[node name="NumberBodySpawner" type="Node"]
+script = ExtResource("1_yw1cg")
