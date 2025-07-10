@@ -1,5 +1,6 @@
 class_name Solfege extends Node2D
 
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var number_body_spawner: NumberBodySpawner = $NumberBodySpawner
 @onready var timer_label: TimerLabel = $Timer
 @onready var solfege_line_edit: SolfegeLineEdit = $Solfege
@@ -12,7 +13,6 @@ var current_mode: Mode = Mode.NORMAL:
 		current_mode = c
 		number_body_spawner.current_mode = current_mode
 @export var threshold: int = 10
-#
 var completed_count: int = 0
 
 func _ready() -> void:
@@ -34,9 +34,7 @@ func on_ready() -> void:
 
 func change_mode_to(mode: Mode) -> void:
 	current_mode = mode
-
-func to_next_mode() -> void:
-	current_mode += 1
+	animated_sprite.frame = current_mode
 
 func reset() -> void:
 	timer_label.reset()
@@ -48,14 +46,16 @@ func _on_solfege_line_edit_number_found(number: int) -> void:
 		solfege_line_edit.reset()
 		return
 	completed_count += 1
-	await get_tree().create_timer(0.5).timeout
+	if current_mode != Mode.HARD and completed_count >= threshold:
+		change_mode_to(Mode.HARD)
+		timer_label.visible = false
+		for n in range(2):
+			await spawn_in_delay(0.5)
+	#
 	solfege_line_edit.reset()
-	change_mode_to(Mode.HARD if completed_count >= threshold else Mode.NORMAL)
-	match current_mode:
-		Mode.NORMAL:
-			timer_label.reset()
-			number_body_spawner.spawn()
-		Mode.HARD:
-			timer_label.visible = false
-			if number_body_spawner.killable_number_bodies.size() < 3:
-				number_body_spawner.spawn()
+	timer_label.reset()
+	spawn_in_delay(0.5)
+
+func spawn_in_delay(second: float) -> void:
+	await get_tree().create_timer(second).timeout
+	number_body_spawner.spawn()

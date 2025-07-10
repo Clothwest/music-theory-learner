@@ -6,7 +6,7 @@ var viewport_center_position: Vector2
 #
 var numbers: Array[int] = [1, 2, 3, 4 ,5, 6, 7]
 var positions: Array[Vector2] = []
-var velocities: Array[Vector2] = [Vector2(0.0, 100.0), Vector2(0.0, 125.0), Vector2(0.0, 150.0)]
+var velocities: Array[Vector2] = [Vector2(100.0, 0.0), Vector2(125.0, 0.0), Vector2(150.0, 0.0)]
 #
 var current_mode: Solfege.Mode = Solfege.Mode.NORMAL
 #
@@ -16,9 +16,11 @@ var killable_numbers: Array[int] = []
 func _ready() -> void:
 	viewport_center_position = get_viewport().get_visible_rect().size / 2
 	#
-	positions.push_back(get_viewport().get_visible_rect().size / 4)
-	positions.push_back(Vector2(get_viewport().get_visible_rect().size.x / 2, get_viewport().get_visible_rect().size.y / 4))
-	positions.push_back(Vector2(get_viewport().get_visible_rect().size.x / 4 * 3, get_viewport().get_visible_rect().size.y / 4))
+	var x: float = get_viewport().get_visible_rect().size.x / 10
+	var y: float = get_viewport().get_visible_rect().size.y / 4
+	positions.push_back(Vector2(x, y * 1))
+	positions.push_back(Vector2(x, y * 2))
+	positions.push_back(Vector2(x, y * 3))
 
 func init(initial_mode: Solfege.Mode) -> void:
 	current_mode = initial_mode
@@ -28,9 +30,7 @@ func spawn() -> void:
 		Solfege.Mode.NORMAL:
 			spawn_normal()
 		Solfege.Mode.HARD:
-			for n in 3 - killable_number_bodies.size():
-				await get_tree().create_timer(0.5).timeout
-				spawn_hard()
+			spawn_hard()
 		_:
 			return
 

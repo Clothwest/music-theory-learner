@@ -1,62 +1,62 @@
 [gd_scene load_steps=12 format=3 uid="uid://cq8yhkho4j6mf"]
 
 [ext_resource type="Script" uid="uid://dce65fku5ns7y" path="res://solfege/number_body/number_body.gd" id="1_o25ba"]
-[ext_resource type="Texture2D" uid="uid://btjpn7dvw7twg" path="res://assets/music_theory_learner.png" id="2_lw43k"]
+[ext_resource type="Texture2D" uid="uid://dwufy0jr3mfb4" path="res://assets/music_theory_learner.png" id="2_206ff"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iibnv"]
 size = Vector2(10, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_alwo4"]
-atlas = ExtResource("2_lw43k")
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3y67"]
+atlas = ExtResource("2_206ff")
 region = Rect2(4, 4, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0b3cc"]
-atlas = ExtResource("2_lw43k")
+[sub_resource type="AtlasTexture" id="AtlasTexture_pve0u"]
+atlas = ExtResource("2_206ff")
 region = Rect2(4, 24, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_40svf"]
-atlas = ExtResource("2_lw43k")
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wi7y"]
+atlas = ExtResource("2_206ff")
 region = Rect2(4, 44, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jojie"]
-atlas = ExtResource("2_lw43k")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbsos"]
+atlas = ExtResource("2_206ff")
 region = Rect2(4, 64, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6da8m"]
-atlas = ExtResource("2_lw43k")
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg4wd"]
+atlas = ExtResource("2_206ff")
 region = Rect2(4, 84, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hj61n"]
-atlas = ExtResource("2_lw43k")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtnbk"]
+atlas = ExtResource("2_206ff")
 region = Rect2(4, 104, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g41vv"]
-atlas = ExtResource("2_lw43k")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yo0h"]
+atlas = ExtResource("2_206ff")
 region = Rect2(4, 124, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iibnv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_alwo4")
+"texture": SubResource("AtlasTexture_j3y67")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0b3cc")
+"texture": SubResource("AtlasTexture_pve0u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_40svf")
+"texture": SubResource("AtlasTexture_7wi7y")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jojie")
+"texture": SubResource("AtlasTexture_rbsos")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6da8m")
+"texture": SubResource("AtlasTexture_tg4wd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hj61n")
+"texture": SubResource("AtlasTexture_xtnbk")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g41vv")
+"texture": SubResource("AtlasTexture_2yo0h")
 }],
 "loop": false,
 "name": &"default",
@@ -65,6 +65,7 @@ animations = [{
 
 [node name="NumberBody" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite")]
 scale = Vector2(3, 3)
+collision_mask = 0
 script = ExtResource("1_o25ba")
 animated_sprite = NodePath("AnimatedSprite2D")
 

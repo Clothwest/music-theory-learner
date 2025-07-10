@@ -1,16 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://c36la3itmohj6"]
+[gd_scene load_steps=13 format=3 uid="uid://c36la3itmohj6"]
 
 [ext_resource type="Script" uid="uid://bjxskskeanx57" path="res://solfege/solfege.gd" id="1_1vtob"]
+[ext_resource type="Texture2D" uid="uid://dwufy0jr3mfb4" path="res://assets/music_theory_learner.png" id="2_2inpg"]
 [ext_resource type="PackedScene" uid="uid://bcndpbhou0qn" path="res://solfege/number_body_spawner/number_body_spawner.tscn" id="2_ix60j"]
 [ext_resource type="Script" uid="uid://6iikrjlf4rj0" path="res://solfege/solfege_line_edit.gd" id="2_monw2"]
 [ext_resource type="Script" uid="uid://7rd6m2m86no" path="res://solfege/timer_label.gd" id="2_nkerw"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_oiibb"]
+atlas = ExtResource("2_2inpg")
+region = Rect2(24, 4, 160, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sb7m"]
+atlas = ExtResource("2_2inpg")
+region = Rect2(24, 98, 160, 90)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qphwi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiibb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sb7m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="LabelSettings" id="LabelSettings_1vtob"]
 outline_color = Color(0.5, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ix60j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2inpg"]
+
+[sub_resource type="Theme" id="Theme_2inpg"]
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_ix60j")
+LineEdit/styles/normal = SubResource("StyleBoxEmpty_2inpg")
 
 [node name="Solfege" type="Node2D"]
 script = ExtResource("1_1vtob")
 threshold = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(7.2, 7.2)
+sprite_frames = SubResource("SpriteFrames_qphwi")
 
 [node name="NumberBodySpawner" parent="." instance=ExtResource("2_ix60j")]
 
@@ -27,12 +63,13 @@ vertical_alignment = 1
 script = ExtResource("2_nkerw")
 
 [node name="Solfege" type="LineEdit" parent="."]
-offset_left = 539.0
-offset_top = 520.0
-offset_right = 607.563
-offset_bottom = 551.0
-theme_override_colors/selection_color = Color(0, 0, 0, 0)
+offset_left = 523.0
+offset_top = 496.0
+offset_right = 623.0
+offset_bottom = 538.0
+theme = SubResource("Theme_2inpg")
 theme_override_colors/caret_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 24
 alignment = 1
 max_length = 4
 script = ExtResource("2_monw2")
