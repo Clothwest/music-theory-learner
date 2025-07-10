@@ -1,10 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://c36la3itmohj6"]
+[gd_scene load_steps=10 format=3 uid="uid://c36la3itmohj6"]
 
 [ext_resource type="Script" uid="uid://bjxskskeanx57" path="res://solfege/solfege.gd" id="1_1vtob"]
 [ext_resource type="Texture2D" uid="uid://dwufy0jr3mfb4" path="res://assets/music_theory_learner.png" id="2_2inpg"]
 [ext_resource type="PackedScene" uid="uid://bcndpbhou0qn" path="res://solfege/number_body_spawner/number_body_spawner.tscn" id="2_ix60j"]
-[ext_resource type="Script" uid="uid://6iikrjlf4rj0" path="res://solfege/solfege_line_edit.gd" id="2_monw2"]
 [ext_resource type="Script" uid="uid://7rd6m2m86no" path="res://solfege/timer_label.gd" id="2_nkerw"]
+[ext_resource type="PackedScene" uid="uid://cnx4o6b52il7k" path="res://solfege/word/word.tscn" id="5_2inpg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oiibb"]
 atlas = ExtResource("2_2inpg")
@@ -31,14 +31,6 @@ animations = [{
 [sub_resource type="LabelSettings" id="LabelSettings_1vtob"]
 outline_color = Color(0.5, 0, 0, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ix60j"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2inpg"]
-
-[sub_resource type="Theme" id="Theme_2inpg"]
-LineEdit/styles/focus = SubResource("StyleBoxEmpty_ix60j")
-LineEdit/styles/normal = SubResource("StyleBoxEmpty_2inpg")
-
 [node name="Solfege" type="Node2D"]
 script = ExtResource("1_1vtob")
 threshold = 1
@@ -62,14 +54,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_nkerw")
 
-[node name="Solfege" type="LineEdit" parent="."]
-offset_left = 523.0
-offset_top = 496.0
-offset_right = 623.0
-offset_bottom = 538.0
-theme = SubResource("Theme_2inpg")
-theme_override_colors/caret_color = Color(0, 0, 0, 0)
-theme_override_font_sizes/font_size = 24
-alignment = 1
-max_length = 4
-script = ExtResource("2_monw2")
+[node name="Word" parent="." instance=ExtResource("5_2inpg")]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)

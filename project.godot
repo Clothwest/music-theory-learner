@@ -15,10 +15,6 @@ run/main_scene="uid://c36la3itmohj6"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
-[display]
-
-window/stretch/mode="viewport"
-
 [layer_names]
 
 2d_physics/layer_1="number_body"

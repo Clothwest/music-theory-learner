@@ -7,6 +7,7 @@ var viewport_center_position: Vector2
 var numbers: Array[int] = [1, 2, 3, 4 ,5, 6, 7]
 var positions: Array[Vector2] = []
 var velocities: Array[Vector2] = [Vector2(100.0, 0.0), Vector2(125.0, 0.0), Vector2(150.0, 0.0)]
+#var velocities: Array[Vector2] = [Vector2.ZERO]
 #
 var current_mode: Solfege.Mode = Solfege.Mode.NORMAL
 #
