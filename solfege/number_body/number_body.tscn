@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cq8yhkho4j6mf"]
+[gd_scene load_steps=13 format=3 uid="uid://cq8yhkho4j6mf"]
 
 [ext_resource type="Script" uid="uid://dce65fku5ns7y" path="res://solfege/number_body/number_body.gd" id="1_o25ba"]
 [ext_resource type="Texture2D" uid="uid://dwufy0jr3mfb4" path="res://assets/music_theory_learner.png" id="2_206ff"]
+[ext_resource type="Script" uid="uid://bl24ot5jjhakg" path="res://solfege/number_body/solfege_audio.gd" id="3_j3y67"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iibnv"]
 size = Vector2(10, 14)
@@ -63,11 +64,12 @@ animations = [{
 "speed": 0.0
 }]
 
-[node name="NumberBody" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite")]
+[node name="NumberBody" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "solfege_audio")]
 scale = Vector2(3, 3)
 collision_mask = 0
 script = ExtResource("1_o25ba")
 animated_sprite = NodePath("AnimatedSprite2D")
+solfege_audio = NodePath("SolfegeAudio")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -75,3 +77,7 @@ shape = SubResource("RectangleShape2D_iibnv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_iibnv")
+
+[node name="SolfegeAudio" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+script = ExtResource("3_j3y67")

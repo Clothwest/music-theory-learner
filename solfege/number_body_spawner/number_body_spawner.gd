@@ -51,11 +51,20 @@ func spawn_hard() -> void:
 	number_body.spawn(num, pos, vel)
 	add_child(number_body)
 
-func kill(number: int) -> int:
+func kill_by_number(number: int) -> int:
 	var index: int = killable_numbers.find(number)
 	if index < 0:
 		return 1
 	var number_body: NumberBody = killable_number_bodies[index]
+	killable_number_bodies.remove_at(index)
+	killable_numbers.remove_at(index)
+	number_body.die()
+	return 0
+
+func kill_by_number_body(number_body: NumberBody) -> int:
+	var index: int = killable_number_bodies.find(number_body)
+	if index < 0:
+		return 1
 	killable_number_bodies.remove_at(index)
 	killable_numbers.remove_at(index)
 	number_body.die()

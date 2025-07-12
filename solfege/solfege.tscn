@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c36la3itmohj6"]
+[gd_scene load_steps=12 format=3 uid="uid://c36la3itmohj6"]
 
 [ext_resource type="Script" uid="uid://bjxskskeanx57" path="res://solfege/solfege.gd" id="1_1vtob"]
 [ext_resource type="Texture2D" uid="uid://dwufy0jr3mfb4" path="res://assets/music_theory_learner.png" id="2_2inpg"]
 [ext_resource type="PackedScene" uid="uid://bcndpbhou0qn" path="res://solfege/number_body_spawner/number_body_spawner.tscn" id="2_ix60j"]
 [ext_resource type="Script" uid="uid://7rd6m2m86no" path="res://solfege/timer_label.gd" id="2_nkerw"]
 [ext_resource type="PackedScene" uid="uid://cnx4o6b52il7k" path="res://solfege/word/word.tscn" id="5_2inpg"]
+[ext_resource type="Script" uid="uid://dv54ffy61c1fp" path="res://solfege/boundary.gd" id="6_oiibb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oiibb"]
 atlas = ExtResource("2_2inpg")
@@ -31,9 +32,12 @@ animations = [{
 [sub_resource type="LabelSettings" id="LabelSettings_1vtob"]
 outline_color = Color(0.5, 0, 0, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oiibb"]
+size = Vector2(20, 648)
+
 [node name="Solfege" type="Node2D"]
 script = ExtResource("1_1vtob")
-threshold = 1
+threshold = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(576, 324)
@@ -57,3 +61,18 @@ script = ExtResource("2_nkerw")
 [node name="Word" parent="." instance=ExtResource("5_2inpg")]
 position = Vector2(576, 324)
 scale = Vector2(2, 2)
+
+[node name="Boundary" type="Area2D" parent="."]
+position = Vector2(1142, 324)
+collision_layer = 0
+script = ExtResource("6_oiibb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary"]
+shape = SubResource("RectangleShape2D_oiibb")
+
+[node name="Line2D" type="Line2D" parent="Boundary"]
+visible = false
+position = Vector2(-11, 0)
+points = PackedVector2Array(0, -324, 0, 324)
+width = 1.0
+default_color = Color(0.73, 0, 0, 1)

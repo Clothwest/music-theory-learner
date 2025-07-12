@@ -24,6 +24,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			word = input_word
 			number_found.emit(map[word])
 
+func change_position(pos:Vector2 = Vector2(800.0, 30.0)) -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(self, "global_position", pos, 1)
+
 func show_word() -> void:
 	label.text = word
 
